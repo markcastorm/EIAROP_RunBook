@@ -19,6 +19,7 @@ python main.py
 ```
 
 Output appears in:
+
 - `output/<timestamp>/` — timestamped run output
 - `output/latest/` — always the most recent files
 - `Master data/Master_EIAROP_DATA.csv` — cumulative data
@@ -44,26 +45,26 @@ EIAROP_RunBook/
 
 All settings are in `config.py`. Key toggles:
 
-| Setting | Default | Description |
-|---------|---------|-------------|
-| `HEADLESS_MODE` | `True` | Must be True in Docker (no display) |
-| `CHECK_FOR_NEW_DATA` | `True` | Set `False` to bypass freshness check |
-| `TARGET_TAB` | `'3btab'` | Tab name in STEO workbook |
-| `TARGET_ROW_CODE` | `'papr_RS'` | Row label to extract |
-| `WAIT_TIMEOUT` | `60` | Selenium wait timeout (seconds) |
-| `DOWNLOAD_WAIT_TIME` | `120` | Max wait for file download (seconds) |
+| Setting                | Default       | Description                             |
+| ---------------------- | ------------- | --------------------------------------- |
+| `HEADLESS_MODE`      | `True`      | Must be True in Docker (no display)     |
+| `CHECK_FOR_NEW_DATA` | `True`      | Set `False` to bypass freshness check |
+| `TARGET_TAB`         | `'3btab'`   | Tab name in STEO workbook               |
+| `TARGET_ROW_CODE`    | `'papr_RS'` | Row label to extract                    |
+| `WAIT_TIMEOUT`       | `60`        | Selenium wait timeout (seconds)         |
+| `DOWNLOAD_WAIT_TIME` | `120`       | Max wait for file download (seconds)    |
 
 ## Output Format
 
 ### DATA File (.xls)
 
-| Row | Col 0 | Col 1 |
-|-----|-------|-------|
-| 0 | *(empty)* | `RUS.EIAROP.M` |
-| 1 | *(empty)* | `EIA Russian Oil Production` |
-| 2 | `2022-01` | `11.2776` |
-| 3 | `2022-02` | `11.3308` |
-| ... | ... | ... |
+| Row | Col 0       | Col 1                          |
+| --- | ----------- | ------------------------------ |
+| 0   | *(empty)* | `RUS.EIAROP.M`               |
+| 1   | *(empty)* | `EIA Russian Oil Production` |
+| 2   | `2022-01` | `11.2776`                    |
+| 3   | `2022-02` | `11.3308`                    |
+| ... | ...         | ...                            |
 
 Values preserve full source precision (3-9 decimal places, no truncation).
 
@@ -95,7 +96,3 @@ If EIA adds years, shifts headers, or moves the data row, the extractor adapts a
 ## Dependencies (pre-installed)
 
 selenium, selenium-stealth, openpyxl, xlwt, xlrd, pandas, plus standard library modules.
-
-## Claude Context
-
-For starting a new Claude Code session on this project, see `Project_information/CLAUDE.md` — it contains full technical context for every file, data structures, edge cases, and reference material paths.
