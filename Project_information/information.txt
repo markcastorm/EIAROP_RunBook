@@ -1,0 +1,96 @@
+Follow the SIMBA pipeline architecture documented in:
+- D:\Projects\SIMBA-RUNBOOKS\TLIAD_Runbook\Project_information\CLAUDE.md (full technical context)
+((D:\Projects\SIMBA-RUNBOOKS\TLIAD_Runbook\scraper.py)
+(D:\Projects\SIMBA-RUNBOOKS\TLIAD_Runbook\orchestrator.py)
+(D:\Projects\SIMBA-RUNBOOKS\TLIAD_Runbook\main.py)
+(D:\Projects\SIMBA-RUNBOOKS\TLIAD_Runbook\file_generator.py)
+(D:\Projects\SIMBA-RUNBOOKS\TLIAD_Runbook\extractor.py)
+(D:\Projects\SIMBA-RUNBOOKS\TLIAD_Runbook\config.py)) so this are the files that make upt the claud.md  read them only if you dont udertand the claude.md file to save tokens
+
+
+- D:\Projects\SIMBA-RUNBOOKS\Runbook_RELPRCLVLINDX\Project_information\PIPELINE_PROMPT.md (file skeletons + rules)
+
+Same structure: config.py, scraper.py, extractor.py, file_generator.py, orchestrator.py, main.py
+Same output: DATA .xls, META .xls, ZIP, master CSV update, timestamped + latest folders
+Same environment: Windows dev, Docker Linux production, all packages pre-installed, os.path.join() everywhere
+
+now weare getting started on a new runnbook(D:\Projects\SIMBA-RUNBOOKS\EIAROP_RunBook\Project_information\EIAROP_RunBook.xlsx) its excel file you can use a script to read excell files since you cant read excel files
+Here is the csv version (D:\Projects\SIMBA-RUNBOOKS\EIAROP_RunBook\Project_information\EIAROP_DATA_20260408 - Sheet1.csv) of the manual data
+HEre is the xlsx version (D:\Projects\SIMBA-RUNBOOKS\EIAROP_RunBook\Project_information\EIAROP_DATA_20260408.xlsx)
+Meta  file (D:\Projects\SIMBA-RUNBOOKS\EIAROP_RunBook\Project_information\EIAROP_META_20250709.xlsx)
+
+analyze them first before we started 
+thistime we will  have the config.py  add the necessary collumns mapinng since the sub headers and headers in the manual data will be exactly the way they are to every output and in the exact arrangemen  since they are absolute unless other wise
+remember they are absolute so store them in the config .py
+(D:\Projects\SIMBA-RUNBOOKS\EIAROP_RunBook\Project_information\EIAROP_DATA_20260408 - Sheet1.csv)  analyze these files verry keenly they are verry important  lets get started
+
+lets first start with the scraper.py 
+we need to  visit this link using selenium stealth ensure we mimic human clicks   and winreg too ensure it works for linux too other wise if it cant dont use it also ensure also works for headles true too
+lets visit this link
+(https://www.eia.gov/outlooks/steo/data.php?type=tables)
+
+when we visit the site this is what it looks like (D:\Projects\SIMBA-RUNBOOKS\EIAROP_RunBook\Project_information\image1.png)(D:\Projects\SIMBA-RUNBOOKS\EIAROP_RunBook\Project_information\sample.txt)
+dont try  reading the whole sampletxt read the immportant stuff only save tokens the sections we are intrested in are 
+(<div class="pub_title bg_aeo">
+    	<a href="/analysis/">‹ Analysis &amp; Projections</a>
+
+        <h1>Short-Term Energy Outlook </h1>
+
+        <p>
+            <strong>Release Date:</strong> April 7, 2026			&nbsp;|&nbsp;
+            <strong>Forecast Completed:</strong> April 6, 2026			&nbsp;|&nbsp;
+            <strong>Next Release Date:</strong> May 12, 2026			<span class="no_print">
+				&nbsp;|&nbsp;
+				<a class="pdf" href="/outlooks/steo/pdf/steo_full.pdf">Full Report</a>
+				&nbsp; &nbsp;|&nbsp;&nbsp;
+				<a class="pdf" href="/outlooks/steo/pdf/steo_text.pdf">Text Only</a>
+				&nbsp;&nbsp;|&nbsp;&nbsp;
+				<a class="xls" href="/outlooks/steo/xls/STEO_m.xlsx">All Tables</a>
+				&nbsp;&nbsp;|&nbsp;&nbsp;
+				<a class="xls" href="/outlooks/steo/xls/chart-gallery.xlsx">All Figures</a>
+       		</span>
+		</p>
+    </div>)
+these dates we will need to scrape and save it will tell us if if the data is new or not and when the next release will be save the dates in a json 
+
+after confirming its new data if not skip the process and log no new data (ensure you add a config i can switch if idont need to usse this feature and bypass it  )
+
+we are next supposed to look for All Tables link dynamicaly  and click it (<a href="/outlooks/steo/xls/STEO_m.xlsx" class="ico_xls">All Tables</a>)
+which will trigger the download of an excell file like this (D:\Projects\SIMBA-RUNBOOKS\EIAROP_RunBook\Project_information\STEO_m.xlsx) save it in the downloads folder with timestamped subfolders for every run
+
+analyze the downloaded file   you can see it has multipletabs ( 
+ 	
+Navigate to the tab "3btab", and collect all avaible periods from "papr_RS (Russia)" row)(D:\Projects\SIMBA-RUNBOOKS\EIAROP_RunBook\Project_information\image2.png)
+we are supposed   
+to scan the file llook for the required tab dynamicaly scan the entire tab dynamicaly  map out  the aarrangement of the columns and rows identifynt the headers wee need and the labales we need without hard cording  we are looking for this lable (papr_RS)and sublabel(Russia) based on the headers and subheaders years and months pick the data we need and mapp it to the output dynamically based on the headers and subheaders in the downloaded file save it ad out data file in the output folder with time stampped subfolders for every run and alates subfolder always holding the latest files on everyrun data meta and zip files 
+happy codding dont waste tokens be efficient at it  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
